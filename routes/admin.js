@@ -1,8 +1,14 @@
 const router = require('express').Router();
 const adminController = require('../controllers/adminController');
 const { upload, uploadMultiple } = require('../middleware/multer'); // deklarasikan multer
+const auth = require('../middleware/auth');
 
+router.get('/signin', adminController.viewSignin);
+router.post('/signin', adminController.actionSignin);
+router.use(auth);
 router.get('/dashboard', adminController.viewDashboard);
+router.get('/logout', adminController.actionLogout);
+
 // endpoint category
 router.get('/category', adminController.viewCategory);
 router.post('/category', adminController.addCategory);
@@ -28,6 +34,10 @@ router.get('/item/show-detail-item/:itemId', adminController.viewDetailItem);
 router.post('/item/add/feature', upload, adminController.addFeature);
 router.put('/item/update/feature', upload, adminController.editFeature);
 router.delete('/item/:itemId/feature/:id', adminController.deleteFeature);
+
+router.post('/item/add/activity', upload, adminController.addActivity);
+router.put('/item/update/activity', upload, adminController.editActivity);
+router.delete('/item/:itemId/activity/:id', adminController.deleteActivity);
 
 router.get('/booking', adminController.viewBooking);
 
