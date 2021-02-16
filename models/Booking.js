@@ -40,13 +40,13 @@ const bookingSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  memberdId: {
+  memberId: {
     type: ObjectId,
     ref: 'Member',
   },
   bankId: {
     type: ObjectId,
-    ref: 'BankId',
+    ref: 'Bank',
   },
   payments: {
     proofPayment: {
