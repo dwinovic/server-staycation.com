@@ -7,6 +7,8 @@ var logger = require('morgan');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
 // import mongoose
 const mongoose = require('mongoose');
@@ -49,6 +51,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+// parse application/json
+app.use(bodyParser.json());
+app.use(cors());
 //file static bootstrap
 app.use(
   '/sb-admin-2',
